@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 1000px;
+  height: 70em;
   margin: 0;
   padding: 0;
 }
@@ -17,31 +17,43 @@
 }
 
 .bar {
-  width: 12em;
+  width: 15em;
   margin: 0 auto;
   padding: .5em;
   border: none;
-  border-bottom: 2px solid;
+  border-bottom: 3.5px solid;
   
   background-color: transparent;
   color: white;
   font-size: medium;
+  transition: border-bottom .3s ease-out;
 }
 
-.button {
+.bar:focus {
+  border-bottom: 3.5px solid blueviolet;
+  outline: none;
+}
+
+#searchButton {
   position: relative;
   top: 1.5em;
   background-color: rgba(10, 6, 61);
   color: white;
-  width: 9em;
-  height: 4em;
+  width: 10.5em;
+  height: 4.2em;
   margin: 0 auto;
-  border: none;
+  border: 3px solid transparent;
   border-radius: 1.75em;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: all .19s ease-in;
+}
+
+#searchButton:hover {
+  background-color: blueviolet;
+  border: 3px solid;
 }
 
 #main {
@@ -49,6 +61,7 @@
   top: 13em;
   width: 80%;
   margin: 0 auto;
+  height: auto;
 }
 
 #result {
@@ -65,8 +78,13 @@
   position: relative;
   top: 1em;
   left: -.8em;
-  width: 100%;
+  width: 90%;
 }
+
+#tr_body.hide {
+  display: none;
+}
+
 
 hr {
   height: 1px;
@@ -126,9 +144,10 @@ hr {
   flex-direction: column;
   align-content: center;
   float: right;
+  color: white;
   background-color: rgba(10, 6, 61, 0.699);
   width: 48%;
-  height: 40em;
+  height: 44.3em;
   border-radius: 14px;
 }
 
@@ -136,19 +155,18 @@ hr {
   position: relative;
   left: .7em;
   width: 8.6em;
-  color: white;
   border-bottom: 3px solid transparent;
   letter-spacing: 2px;
   transition: border-bottom .3s ease-out;
 }
 
-#pl_body {
+#pl_search {
   align-self: center;
   position: relative;
   top: 2em;
   background-color: transparent;
   height: 2em;
-  width: 24em;
+  width: 88%;
   border: none;
   border-bottom: 3px solid white;
   font-size: large;
@@ -156,14 +174,63 @@ hr {
   transition: border-bottom .3s ease-out;
 }
 
-#pl_body::placeholder {
+#pl_search::placeholder {
   font-size: 21px;
   letter-spacing: .6px;
 }
 
-#pl_body:focus {
+#pl_search:focus {
   border: none;
   border-bottom: 3px solid blueviolet;
   outline: none;
 }
+
+#pltr-id {
+  display: block;
+  position: relative;
+  top: 3em;
+  left: -.8em;
+  width: 90%;
+}
+
+.xButton {
+  position: absolute;
+  top: .5em;
+  right: .5em;
+  font-size: 1.4em;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: color .3s ease-out;
+}
+
+.xButton:hover {
+  color: grey;
+  
+}
+
+#pl_button {
+  position: relative;
+  top: 6em;
+  width: 180px;
+  height: 50px;
+  background-color: blueviolet;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 2px solid limegreen;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: all .4s ease-out;
+}
+
+#pl_button:hover {
+  background-color: limegreen;
+  border: 2px solid black;
+  color: black;
+}
+
 
