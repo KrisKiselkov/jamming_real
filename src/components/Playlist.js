@@ -17,8 +17,7 @@ const Playlist = (props) => {
         onChange={props.onChange} 
         onClick={props.onClick}/>
         
-        {console.log(props.savedTracks)}
-        <div>
+        <div id={props.playlistTracks}>
           {props.savedTracks.map((svTrack, id) => (
             
             <div key={svTrack.id}>
@@ -41,7 +40,7 @@ const Playlist = (props) => {
           ))}
         </div> 
 
-        <button id={props.buttonId}>Save to Spotify</button>
+        <button id={props.buttonId} onClick={props.onSave}>Save to Spotify</button>
     </div>  
   )
 }

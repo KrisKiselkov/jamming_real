@@ -21,17 +21,24 @@
   margin: 0 auto;
   padding: .5em;
   border: none;
-  border-bottom: 3.5px solid;
-  
+  border-bottom: 3.5px solid; 
   background-color: transparent;
   color: white;
-  font-size: medium;
+  font-size: 25px;
+  font-weight: bold;
   transition: border-bottom .3s ease-out;
 }
 
 .bar:focus {
   border-bottom: 3.5px solid blueviolet;
   outline: none;
+  
+}
+
+.bar::placeholder {
+  font-size: 21px;
+  color: gray;
+  font-weight: normal;
 }
 
 #searchButton {
@@ -72,6 +79,30 @@
   background-color: rgba(10, 6, 61, 0.699);
   border-radius: 14px;
   
+}
+
+#resultTracks {
+  height: 40em;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 #tr_body {
@@ -147,8 +178,15 @@ hr {
   color: white;
   background-color: rgba(10, 6, 61, 0.699);
   width: 48%;
-  height: 44.3em;
+  height: 45.3em;
   border-radius: 14px;
+}
+
+#playlistTracks {
+  position: relative;
+  top: 3em;
+  max-height: 27em;
+  overflow-y: auto;
 }
 
 #pl_h2 {
@@ -163,19 +201,21 @@ hr {
 #pl_search {
   align-self: center;
   position: relative;
-  top: 2em;
+  top: 1em;
   background-color: transparent;
   height: 2em;
   width: 88%;
   border: none;
   border-bottom: 3px solid white;
-  font-size: large;
+  font-size: 25px;
+  font-weight: bold;
   color: white;
   transition: border-bottom .3s ease-out;
 }
 
 #pl_search::placeholder {
   font-size: 21px;
+  font-weight: normal;
   letter-spacing: .6px;
 }
 
@@ -188,7 +228,6 @@ hr {
 #pltr-id {
   display: block;
   position: relative;
-  top: 3em;
   left: -.8em;
   width: 90%;
 }

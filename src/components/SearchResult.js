@@ -9,7 +9,7 @@ const SearchResult = (props) => {
   return (
     <div id={props.rl_id}  onMouseOver={props.resultMouseOver}>
         <h2 id={props.rl_h2_id}>Results</h2>
-        <div >
+        <div id={props.resultTracks}>
             {props.tracks.map(track => (
                 <ul key={track.id} className={track.hidden ? 'hide' : ''}
                 id={props.id}>

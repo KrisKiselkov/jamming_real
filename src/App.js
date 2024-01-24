@@ -1,13 +1,12 @@
 import { useState } from "react";
 import SearchResult from "./components/SearchResult";
-import Search from "./buttons/Search";
 import SearchBar from "./components/SearchBar";
 import Playlist from "./components/Playlist";
+import Spotify from "./components/Spotify";
 import './App.css';
 
 
 function App() {
-  const [ search, setSearch ] = useState('');
   const [ searchResult, setSearchResult ] = useState([{
     name: "K y B",
     artist: "Morad, Beny Jr",
@@ -75,33 +74,13 @@ function App() {
   const [savePlaylist, setSavePlaylist] = useState([]);
 
   
-
-
   //SETTING SEARCH TEXT
-  const handleSearchChange = (event) => {
-    setSearch(event.target.value);
+  const handleSearchChange = (text) => {
+    Spotify.search(text).then(setSearchResult);
   };
 
   //SEARCH BUTTON
-  const handleSearchClick = () => {
-    const filteredTracks = searchResult.map((track) => {
-      if (track.name.toLowerCase().includes(search.toLowerCase())) {
-        return {
-          ...track,
-          hidden: false,
-        };
-      }
-      return {
-        ...track,
-        hidden: true,
-      };
-    });
-    setSearchResult(filteredTracks);
-    
-  };
-    
-  
-  
+  /**/
 
   //SETTING PLAYLIST TEXT
   const handlePlaylistChange = (event) => {
@@ -128,9 +107,6 @@ function App() {
     result.addEventListener('mouseout', mouseOutResult);
   };
 
-
-  
-
   //BUTTON CLICK
   const addTrack = (track) => {
     if (savePlaylist.some(savedTrack => savedTrack.id === track.id))
@@ -139,11 +115,6 @@ function App() {
       return [...prev, track];
     });
   };
-
-
-
-
-
 
   //MOUSE OVER PLAYLIST
   const playlistMouseOver = () => {
@@ -166,8 +137,6 @@ function App() {
     playlist.addEventListener('mouseout', mouseOutPlaylist);
   };
 
-
-
   const handlePlSearch = () => {
     const pl_search = document.getElementById('pl_search');
     const borderB = document.getElementById('pl_h2');
@@ -189,6 +158,10 @@ function App() {
     })
   }
 
+  const onSave = () => {
+    const trackURI = savePlaylist.map(track => track.uri);
+  }
+
   
 
   return (
@@ -197,13 +170,12 @@ function App() {
         <SearchBar 
         className='bar'
         type='text'
-        plchol='Search...' value={search} onChange={handleSearchChange}/>
-        <br></br>
+        plchol='Search...' onChange={handleSearchChange}
+        buttonType='submit' 
+        searchButton='searchButton' />
+        
 
-        <Search 
-        type='submit' 
-        searchButton='searchButton' 
-        searchClick = {handleSearchClick}>Search</Search>
+        
       </div>
       <div id="main">
         
@@ -214,6 +186,7 @@ function App() {
         valueName={playlistName}
         type='text'
         plchol='Playlist...'
+        playlistTracks = 'playlistTracks'
         valuePlaylist = {savePlaylist}
         savedTracks= {savePlaylist}
         pltrId = 'pltr-id' 
@@ -223,13 +196,15 @@ function App() {
         onMouseOver={playlistMouseOver}
         onClick={handlePlSearch}
         onChange={handlePlaylistChange}
-        removeButton={handleRemoveButton}/>
+        removeButton={handleRemoveButton}
+        onSave={onSave}/>
         
          
        <SearchResult 
         rl_id='result'
         id='tr_body'
         rl_h2_id='rl_h2'
+        resultTracks = 'resultTracks'
         tracks = {searchResult}
         className='song' classArtist='art_alb' classButton='rl_button'
         resultMouseOver={resultMouseOver}

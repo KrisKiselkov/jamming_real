@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const SearchBar = (props) => {
+  const [text, setText] = useState("");
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const searchButton = () => {
+    props.onChange(text);
+  };
+
+
   return (
-    <input 
-    className={props.className}
-    value={props.value} 
-    type={props.type}
-    placeholder={props.plchol} 
-    onChange={props.onChange}/>
+    <>
+      <input 
+      className={props.className}
+      placeholder={props.plchol} 
+      onChange={handleTextChange}/>
+
+      <br></br>
+
+      <button id={props.searchButton} 
+      type={props.buttonType} 
+      onClick={searchButton}>Search</button>
+    </>
   )
 }
 
