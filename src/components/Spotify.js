@@ -19,7 +19,7 @@ const Spotify = {
         window.history.pushState('Access Token', null, '/'); // This clears the parameters, allowing us to grab a new access token when it expires.
         return accessToken;
       } else {
-        //Sends you to log in your Dpotify account
+        //Sends you to log in your Spotify account
         const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
         window.location = accessUrl;
       }

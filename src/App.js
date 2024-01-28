@@ -3,6 +3,7 @@ import SearchResult from "./components/SearchResult";
 import SearchBar from "./components/SearchBar";
 import Playlist from "./components/Playlist";
 import Spotify from "./components/Spotify";
+import SaveToSpotify from "./buttons/SaveToSpotify";
 import './App.css';
 
 
@@ -70,7 +71,7 @@ function App() {
     id: 9
     
 }]);
-  const [ playlistName, setPlaylistName ] = useState('');
+  const [ playlistName, setPlaylistName ] = useState('New Playlist');
   const [savePlaylist, setSavePlaylist] = useState([]);
 
   
@@ -160,22 +161,28 @@ function App() {
 
   const onSave = () => {
     const trackURI = savePlaylist.map(track => track.uri);
+    const name = playlistName;
+    SaveToSpotify.savePlaylistName(name, trackURI).then(() => {
+      setPlaylistName('New Playlist');
+      setSavePlaylist([]);
+    })
   }
 
   
 
   return (
     <div id="body">
+      <header>
+        <h1>Ja<span id="h-m">mmm</span>ing</h1>
+      </header>
+
       <div id="search">
         <SearchBar 
         className='bar'
         type='text'
         plchol='Search...' onChange={handleSearchChange}
         buttonType='submit' 
-        searchButton='searchButton' />
-        
-
-        
+        searchButton='searchButton' />        
       </div>
       <div id="main">
         
